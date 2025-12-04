@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Navideño CNB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a2e;
+            padding: 20px;
+        }
+        
+        .invitation {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 9/16;
+            background: 
+                linear-gradient(135deg, rgba(0, 59, 122, 0.4) 0%, rgba(196, 30, 58, 0.3) 30%, rgba(22, 91, 51, 0.3) 60%, rgba(0, 119, 200, 0.4) 100%),
+                linear-gradient(135deg, #003b7a 0%, #c41e3a 25%, #165b33 50%, #0077c8 75%, #c41e3a 100%);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                        inset 0 0 100px rgba(0, 119, 200, 0.15);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(0, 119, 200, 0.4);
+        }
+        
+        .invitation::before {
+            content: '❄️ ⛄ 🎄 ❄️ 🎁 ⭐ ❄️ 🔔 ✨ ❄️ 🎅 ❄️ 🎄 ❄️ ⛄ 🎁 ❄️';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            font-size: 40px;
+            opacity: 0.15;
+            animation: snowfall 25s linear infinite;
+            white-space: pre-wrap;
+            line-height: 80px;
+            word-spacing: 40px;
+        }
+        
+        @keyframes snowfall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100%) rotate(360deg); }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .logo-container {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-container img {
+            width: 180px;
+            height: auto;
+            display: block;
+        }
+        
+        .ornament {
+            font-size: 40px;
+            margin: 15px 0;
+            animation: swing 3s ease-in-out infinite;
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .floating-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            box-shadow: 0 5px 20px rgba(0, 119, 200, 0.5),
+                        0 0 30px rgba(0, 119, 200, 0.3);
+            animation: float 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-logo:hover {
+            box-shadow: 0 8px 30px rgba(0, 119, 200, 0.7),
+                        0 0 50px rgba(0, 119, 200, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .floating-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .details {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid rgba(0, 119, 200, 0.5);
+            width: 100%;
+            box-shadow: 0 0 20px rgba(0, 119, 200, 0.2);
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            font-size: 20px;
+        }
+        
+        .icon {
+            font-size: 28px;
+            margin-right: 12px;
+        }
+        
+        .date {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .footer {
+            margin-top: auto;
+            font-size: 18px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            background: rgba(0, 59, 122, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 119, 200, 0.4);
+        }
+        
+        .stars {
+            position: absolute;
+            font-size: 24px;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .star1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .star2 { top: 15%; right: 15%; animation-delay: 0.5s; }
+        .star3 { bottom: 25%; left: 8%; animation-delay: 1s; }
+        .star4 { bottom: 20%; right: 10%; animation-delay: 1.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation">
+        <div class="stars star1">✨</div>
+        <div class="stars star2">⭐</div>
+        <div class="stars star3">✨</div>
+        <div class="stars star4">⭐</div>
+        
+        <div class="content">
+            <div class="ornament">🎄</div>
+            
+            <h1>BINGO<br>NAVIDEÑO</h1>
+            
+            <div class="subtitle">
+                Te invita 
+                <a href="https://cnbcolombia.org/" target="_blank" class="logo-link">
+                    <div class="floating-logo">
+                        <img src="CNBlogo.jpg" alt="CNB Logo">
+                    </div>
+                </a>
+            </div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <span class="icon">📅</span>
+                    <div>
+                        <div class="date">15 de Diciembre</div>
+                        <div>2024</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="icon">🎁</span>
+                    <span>Espectaculares reconocimientos</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="icon">🎉</span>
+                    <span>Por tu participación</span>
+                </div>
+            </div>
+            
+            <div class="footer">
+                Momento de esparcimiento con el<br>
+                Colegio Nacional de Bacteriología
+            </div>
+        </div>
+    </div>
+</body>
+</html>
