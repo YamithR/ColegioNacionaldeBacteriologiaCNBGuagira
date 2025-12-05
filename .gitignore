@@ -1,0 +1,27 @@
+# Frames directory (generated files)
+frames/
+
+# Generated files
+out.gif
+palette.png
+*.gif
+
+# Node modules
+node_modules/
+package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

@@ -1,0 +1,23 @@
+{
+  "name": "bingo-navideno-cnb",
+  "version": "1.0.0",
+  "description": "Invitación digital para el Bingo Navideño del CNB con exportación a GIF",
+  "main": "index.html",
+  "scripts": {
+    "capture": "node capture-frames.js",
+    "gif": "node create-gif-node.js"
+  },
+  "keywords": [
+    "invitation",
+    "gif",
+    "ffmpeg",
+    "christmas",
+    "bingo"
+  ],
+  "author": "CNB Colombia",
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "dependencies": {}
+}
