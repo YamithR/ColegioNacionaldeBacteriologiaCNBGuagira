@@ -38,7 +38,7 @@ if [ ! -d "frames" ]; then
 fi
 
 # Contar archivos en la carpeta frames
-frame_count=$(ls -1 frames/frame*.png 2>/dev/null | wc -l)
+frame_count=$(find frames -name 'frame*.png' -type f 2>/dev/null | wc -l)
 if [ "$frame_count" -lt 2 ]; then
     echo -e "${RED}Error: Se necesitan al menos 2 frames en la carpeta 'frames'.${NC}"
     echo ""

@@ -76,10 +76,17 @@ Write-Host ""
 Write-ColorOutput "Paso 1/2: Generando paleta de colores optimizada..." "Yellow"
 
 try {
-    $process = Start-Process -FilePath "ffmpeg" -ArgumentList "-y", "-i", $inputPattern, "-vf", "palettegen=stats_mode=diff", $palette -NoNewWindow -Wait -PassThru
+    $process = Start-Process -FilePath "ffmpeg" -ArgumentList "-y", "-i", $inputPattern, "-vf", "palettegen=stats_mode=diff", $palette -NoNewWindow -Wait -PassThru -RedirectStandardError "$env:TEMP\ffmpeg_error.txt"
     
     if ($process.ExitCode -ne 0) {
-        Write-ColorOutput "Error: No se pudo generar la paleta" "Red"
+        Write-ColorOutput "Error: No se pudo generar la paleta (código de salida: $($process.ExitCode))" "Red"
+        if (Test-Path "$env:TEMP\ffmpeg_error.txt") {
+            $errorContent = Get-Content "$env:TEMP\ffmpeg_error.txt" -Tail 10 | Out-String
+            if ($errorContent.Trim()) {
+                Write-Host "Detalles del error:" -ForegroundColor Yellow
+                Write-Host $errorContent
+            }
+        }
         exit 1
     }
 } catch {
@@ -99,10 +106,17 @@ Write-Host ""
 Write-ColorOutput "Paso 2/2: Creando GIF animado..." "Yellow"
 
 try {
-    $process = Start-Process -FilePath "ffmpeg" -ArgumentList "-y", "-i", $inputPattern, "-i", $palette, "-lavfi", "paletteuse=dither=bayer:bayer_scale=5", "-r", $frameRate, $output -NoNewWindow -Wait -PassThru
+    $process = Start-Process -FilePath "ffmpeg" -ArgumentList "-y", "-i", $inputPattern, "-i", $palette, "-lavfi", "paletteuse=dither=bayer:bayer_scale=5", "-r", $frameRate, $output -NoNewWindow -Wait -PassThru -RedirectStandardError "$env:TEMP\ffmpeg_error.txt"
     
     if ($process.ExitCode -ne 0) {
-        Write-ColorOutput "Error: No se pudo crear el GIF" "Red"
+        Write-ColorOutput "Error: No se pudo crear el GIF (código de salida: $($process.ExitCode))" "Red"
+        if (Test-Path "$env:TEMP\ffmpeg_error.txt") {
+            $errorContent = Get-Content "$env:TEMP\ffmpeg_error.txt" -Tail 10 | Out-String
+            if ($errorContent.Trim()) {
+                Write-Host "Detalles del error:" -ForegroundColor Yellow
+                Write-Host $errorContent
+            }
+        }
         exit 1
     }
 } catch {

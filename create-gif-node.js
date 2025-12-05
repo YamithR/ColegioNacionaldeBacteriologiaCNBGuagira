@@ -23,9 +23,9 @@ const CONFIG = {
 async function checkFFmpeg() {
     try {
         await execPromise('ffmpeg -version');
-        return true;
+        return { installed: true, error: null };
     } catch (error) {
-        return false;
+        return { installed: false, error: error.message };
     }
 }
 
@@ -104,10 +104,13 @@ async function main() {
     try {
         // Verificar FFmpeg
         console.log('Verificando requisitos...');
-        const hasFFmpeg = await checkFFmpeg();
+        const ffmpegCheck = await checkFFmpeg();
         
-        if (!hasFFmpeg) {
+        if (!ffmpegCheck.installed) {
             console.error('\n❌ Error: FFmpeg no está instalado');
+            if (ffmpegCheck.error) {
+                console.error(`Detalles: ${ffmpegCheck.error}`);
+            }
             console.log('\nPor favor instala FFmpeg primero:');
             console.log('  - Windows: winget install FFmpeg');
             console.log('  - macOS:   brew install ffmpeg');
