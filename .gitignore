@@ -40,7 +40,6 @@ build/
 # Backup files
 *.bak
 *.backup
-*~
 
 # Test coverage
 coverage/
