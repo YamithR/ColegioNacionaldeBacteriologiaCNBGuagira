@@ -1,0 +1,25 @@
+{
+  "name": "colegionacionaldebacteriologiacnb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YamithR/ColegioNacionaldeBacteriologiaCNBGuagira.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/YamithR/ColegioNacionaldeBacteriologiaCNBGuagira/issues"
+  },
+  "homepage": "https://github.com/YamithR/ColegioNacionaldeBacteriologiaCNBGuagira#readme",
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "puppeteer": "^24.32.0"
+  }
+}
